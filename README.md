@@ -1,4 +1,4 @@
-# 💼 Portfólio Pessoal - Carlos Henrique de Oliveira
+# 💼 Portfólio Pessoal - Carlos Henrique de Oliveira Henrique
 
 <div align="center">
 
@@ -218,7 +218,7 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 ## 👨‍💻 **Sobre o Desenvolvedor**
 
-**Carlos Henrique de Oliveira**
+**Carlos Henrique de Oliveira Henrique**
 - 🎯 Desenvolvedor Frontend Júnior
 - 🎓 Cursando Análise e Desenvolvimento de Sistemas - UniSenac
 - 🪖 Ex-militar em transição para tecnologia

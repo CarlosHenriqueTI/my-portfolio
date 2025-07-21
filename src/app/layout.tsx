@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   title: 'Carlos Henrique | Desenvolvedor Frontend',
-  description: 'Portfólio pessoal de Carlos Henrique de Oliveira, Desenvolvedor Frontend Júnior com React.js, TypeScript e Tailwind CSS.',
+  description: 'Portfólio pessoal de Carlos Henrique de Oliveira Henrique, Desenvolvedor Frontend Júnior com React.js, TypeScript e Tailwind CSS.',
 };
 
 export default function RootLayout({

@@ -132,7 +132,7 @@ export default function Footer() {
             <p className={`text-xs sm:text-sm ${
               theme === 'dark' ? 'text-gray-500' : 'text-gray-600'
             }`}>
-              &copy; {new Date().getFullYear()} Carlos Henrique de Oliveira. Todos os direitos reservados.
+              &copy; {new Date().getFullYear()} Carlos Henrique de Oliveira Henrique. Todos os direitos reservados.
             </p>
             
             {/* Status disponibilidade */}
