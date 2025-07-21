@@ -9,7 +9,7 @@
 
 **Portfólio profissional moderno e responsivo desenvolvido com as mais recentes tecnologias frontend**
 
-[🌐 Ver Demo](#) • [📧 Contato](mailto:carloshenriqueti09@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/carlos-henriqueti/)
+[🌐 Ver Demo](https://github.com/CarlosHenriqueTI/my-portfolio) • [📧 Contato](mailto:carloshenriqueti09@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/carlos-henriqueti/)
 
 </div>
 
