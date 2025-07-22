@@ -105,7 +105,7 @@ export default function LofiRadio() {
   };
 
   return (
-    <div className="fixed top-2 right-4 z-50">
+    <div className="fixed top-16 right-3 z-50">
       <audio
         ref={audioRef}
         onError={handleError}
