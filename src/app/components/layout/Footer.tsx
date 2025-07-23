@@ -57,54 +57,6 @@ export default function Footer() {
             }`}>Desenvolvedor Frontend Júnior</p>
           </div>
 
-          {/* Links de navegação */}
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-6 mb-4 sm:mb-6 text-xs sm:text-sm">
-            <a href="#about" className={`transition-colors duration-300 ${
-              theme === 'dark' ? 'text-gray-400 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
-            }`}>Sobre</a>
-            <a href="#skills" className={`transition-colors duration-300 ${
-              theme === 'dark' ? 'text-gray-400 hover:text-purple-400' : 'text-gray-600 hover:text-purple-600'
-            }`}>Habilidades</a>
-            <a href="#projects" className={`transition-colors duration-300 ${
-              theme === 'dark' ? 'text-gray-400 hover:text-indigo-400' : 'text-gray-600 hover:text-indigo-600'
-            }`}>Projetos</a>
-            <a href="#contact" className={`transition-colors duration-300 ${
-              theme === 'dark' ? 'text-gray-400 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
-            }`}>Contato</a>
-          </div>
-
-          {/* Links sociais */}
-          <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
-            <a 
-              href="https://www.linkedin.com/in/carlos-henriqueti/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className={`text-xs sm:text-sm transition-colors duration-300 ${
-                theme === 'dark' ? 'text-gray-400 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
-              }`}
-            >
-              LinkedIn
-            </a>
-            <a 
-              href="https://github.com/CarlosHenriqueTI" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className={`text-xs sm:text-sm transition-colors duration-300 ${
-                theme === 'dark' ? 'text-gray-400 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
-              }`}
-            >
-              GitHub
-            </a>
-            <a 
-              href="mailto:carloshenriqueti09@gmail.com"
-              className={`text-xs sm:text-sm transition-colors duration-300 ${
-                theme === 'dark' ? 'text-gray-400 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
-              }`}
-            >
-              Email
-            </a>
-          </div>
-
           {/* Divisor */}
           <div className={`border-t pt-4 sm:pt-6 ${
             theme === 'dark' ? 'border-gray-700/50' : 'border-gray-300/50'
