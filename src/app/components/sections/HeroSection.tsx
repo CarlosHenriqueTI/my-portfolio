@@ -1,16 +1,36 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, Eye } from 'lucide-react';
 import ProfileImage from '../ProfileImage';
 import { useTheme } from '../../context/ThemeContext';
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [visitCount, setVisitCount] = useState(0);
   const { theme } = useTheme();
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Sistema de contador de visitas
+    const updateVisitCount = () => {
+      const today = new Date().toDateString();
+      const lastVisit = localStorage.getItem('portfolio-last-visit');
+      const currentCount = parseInt(localStorage.getItem('portfolio-visit-count') || '0');
+      
+      // Se é uma nova visita (diferente dia ou primeira vez)
+      if (lastVisit !== today) {
+        const newCount = currentCount + 1;
+        localStorage.setItem('portfolio-visit-count', newCount.toString());
+        localStorage.setItem('portfolio-last-visit', today);
+        setVisitCount(newCount);
+      } else {
+        setVisitCount(currentCount);
+      }
+    };
+
+    updateVisitCount();
   }, []);
 
   return (
@@ -121,6 +141,32 @@ export default function HeroSection() {
               >
                 <Mail size={20} />
               </a>
+            </div>
+
+            {/* Contador de Visitas */}
+            <div className={`mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm border transition-all duration-300 ${
+              theme === 'dark' 
+                ? 'bg-slate-800/50 border-slate-700/50 text-gray-300' 
+                : 'bg-white/80 border-gray-200/50 text-gray-700'
+            }`}>
+              <Eye size={16} className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} />
+              <span className="text-sm font-medium">
+                {visitCount > 0 ? (
+                  <>
+                    <span className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}>
+                      {visitCount.toLocaleString()}
+                    </span>
+                    {' '}
+                    <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
+                      {visitCount === 1 ? 'visita' : 'visitas'}
+                    </span>
+                  </>
+                ) : (
+                  <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
+                    Carregando...
+                  </span>
+                )}
+              </span>
             </div>
           </div>
 
