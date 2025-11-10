@@ -13,6 +13,9 @@ import Contact from './components/sections/Contact';
 import Footer from './components/layout/Footer';
 import Chatbot from './components/ui/Chatbot';
 import LofiRadio from './components/ui/LofiRadio';
+import ScrollProgress from './components/ui/ScrollProgress';
+import SkipLinks from './components/ui/SkipLinks';
+import FuturisticBackground from './components/ui/FuturisticBackground';
 
 function HomePageContent() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -25,9 +28,12 @@ function HomePageContent() {
   return (
     <div className={`min-h-screen font-inter relative overflow-hidden transition-colors duration-300 ${
       theme === 'dark' 
-        ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white' 
-        : 'bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30 text-gray-900'
+        ? 'bg-[#0a0a1a] text-white' 
+        : 'bg-[#f0f4ff] text-gray-900'
     }`}>
+      <FuturisticBackground />
+      <SkipLinks />
+      <ScrollProgress />
       <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <Toaster 
           position="top-right" 
@@ -43,7 +49,7 @@ function HomePageContent() {
           }}
         />
         <Navbar /> 
-        <main>
+        <main id="main-content" role="main">
           <HeroSection />
             <About />
             <Skills />

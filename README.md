@@ -1,53 +1,100 @@
-# 💼 Portfólio Pessoal - Carlos Henrique de Oliveira Henrique
+# 💼 Portfólio Pessoal - Carlos Henrique
 
 <div align="center">
 
 ![Next.js](https://img.shields.io/badge/Next.js-15.4.1-black?style=for-the-badge&logo=next.js)
+![React](https://img.shields.io/badge/React-19.1.0-61DAFB?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-FF0055?style=for-the-badge&logo=framer)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel)
 
-**Portfólio profissional moderno e responsivo desenvolvido com as mais recentes tecnologias frontend**
+**✨ Portfolio Moderno v2.0 - Com Animações, 3D, i18n e Acessibilidade Completa ✨**
 
-[🌐 Ver Demo](https://github.com/CarlosHenriqueTI/my-portfolio) • [📧 Contato](mailto:carloshenriqueti09@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/carlos-henriqueti/)
+[🌐 Ver Demo](https://carloshenrique.dev) • [📧 Contato](mailto:carloshenriqueti09@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/carlos-henriqueti/) • [🐙 GitHub](https://github.com/CarlosHenriqueTI)
 
 </div>
 
 ---
 
-## 🎯 **Sobre o Projeto**
+## 🚀 **Versão 2.0 - MEGA UPDATE!**
 
-Este é meu portfólio pessoal, desenvolvido para apresentar minhas habilidades, projetos e experiência como **Desenvolvedor Frontend**. O site conta com design moderno, animações suaves e funcionalidades avançadas para proporcionar a melhor experiência ao usuário.
+Este portfolio foi completamente modernizado com as tecnologias mais recentes e melhores práticas de 2025!
 
-### ✨ **Principais Características**
+### 🎉 **Novidades da v2.0**
 
-- 🎨 **Design Profissional** com gradientes azul-roxo consistentes
-- 🌙 **Modo Escuro/Claro** com transições suaves
-- 📱 **100% Responsivo** para todos os dispositivos
-- ⚡ **Performance Otimizada** com Next.js 15 e Turbopack
-- 📧 **Sistema de Contato** funcional com envio de emails
-- 🤖 **Chatbot Inteligente** para interação com visitantes
-- 🎵 **Lofi Radio Player** integrado para experiência única
-- 🎭 **Animações Avançadas** e efeitos visuais
-- 🔍 **SEO Otimizado** para melhor indexação
+- ✨ **Framer Motion** - Animações fluidas e performáticas
+- � **Shadcn/UI** - Sistema de design consistente e acessível
+- 🎭 **Glassmorphism** - Efeitos visuais modernos com backdrop-filter
+- 📊 **Vercel Analytics** - Monitoramento de performance e métricas
+- ♿ **Acessibilidade WCAG 2.1** - Skip links, ARIA labels, focus states
+- 📜 **Scroll Progress Bar** - Barra de progresso animada
+- 🎪 **Micro-interações** - Hover effects, ripple, glow effects
+- 🔄 **Loading Skeletons** - Estados de carregamento visuais
+- 🌐 **i18n** - Suporte multilíngue (PT/EN)
+- 🎮 **Three.js** - Elementos 3D interativos
+- 🎨 **Lottie** - Animações complexas em JSON
 
 ---
 
-## 🛠️ **Tecnologias Utilizadas**
+## 🎯 **Sobre o Projeto**
 
-### **Frontend**
-- **Next.js 15.4.1** - Framework React com App Router
-- **TypeScript** - Tipagem estática para maior segurança
-- **Tailwind CSS** - Framework CSS utilitário
-- **Lucide React** - Ícones modernos e customizáveis
-- **React Hot Toast** - Notificações elegantes
+Portfolio pessoal desenvolvido para apresentar minhas habilidades, projetos e experiência como **Desenvolvedor Frontend Júnior**. Conta com design moderno, animações avançadas e funcionalidades de ponta para proporcionar a melhor experiência ao usuário.
+
+### 💡 **Destaques**
+
+- 🎨 **Design Profissional** com gradientes modernos e glassmorphism
+- 🌙 **Dark/Light Mode** com transições suaves e persistência
+- 📱 **100% Responsivo** - Mobile-first design
+- ⚡ **Performance Excepcional** - Lighthouse Score 95+
+- 🚀 **Next.js 15 + Turbopack** - Build super rápido
+- 🎭 **Animações Avançadas** - Framer Motion em toda página
+- 🎯 **SEO Otimizado** - OpenGraph, Twitter Cards, Schema
+- ♿ **Totalmente Acessível** - Navegação por teclado, screen readers
+- 📧 **Sistema de Contato** - Envio de emails funcional
+- 🤖 **Chatbot Inteligente** - Assistente virtual
+- 🎵 **Lofi Radio** - Player de música integrado
+- 🌍 **Multilíngue** - Português e Inglês
+
+---
+
+## 🛠️ **Stack Tecnológico**
+
+### **Core**
+- **Next.js 15.4.1** - React framework com App Router
+- **React 19.1.0** - Biblioteca UI mais recente
+- **TypeScript 5** - Type safety e IntelliSense
+- **Tailwind CSS 4** - Utility-first CSS framework
+
+### **Animações & UI**
+- **Framer Motion 11** - Animações fluidas e gestos
+- **Shadcn/UI** - Componentes acessíveis (Radix UI)
+- **Lucide React** - Ícones modernos SVG
+- **Lottie React** - Animações JSON complexas
+
+### **3D & Visualização**
+- **Three.js** - Gráficos 3D WebGL
+- **React Three Fiber** - React renderer para Three.js
+- **@react-three/drei** - Helpers e componentes 3D
+
+### **Internacionalização**
+- **next-intl** - i18n para Next.js App Router
 
 ### **Backend & APIs**
-- **Next.js API Routes** - Endpoints serverless
-- **Nodemailer** - Envio de emails via Gmail
+- **Next.js API Routes** - Serverless functions
+- **Nodemailer** - Envio de emails
 - **Zod** - Validação de schemas TypeScript
+- **React Hook Form** - Gerenciamento de formulários
 
-### **Ferramentas & Deploy**
+### **Analytics & Monitoring**
+- **@vercel/analytics** - Web analytics
+- **@vercel/speed-insights** - Performance monitoring
+
+### **Notificações**
+- **Sonner** - Toast notifications modernas
+- **React Hot Toast** - Alternativa de toasts
+
+### **Deploy & DevOps**
 - **ESLint** - Linting e padronização de código
 - **PostCSS** - Processamento de CSS
 - **Vercel** - Deploy e hospedagem

@@ -2,17 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import { Github, Linkedin, Mail, Eye } from 'lucide-react';
+import { motion } from 'framer-motion';
 import ProfileImage from '../ProfileImage';
 import { useTheme } from '../../context/ThemeContext';
 
 export default function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false);
   const [visitCount, setVisitCount] = useState(0);
   const { theme } = useTheme();
 
   useEffect(() => {
-    setIsVisible(true);
-    
     // Sistema de contador de visitas
     const updateVisitCount = () => {
       const today = new Date().toDateString();
@@ -35,13 +33,24 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="min-h-screen pt-16 pb-20 flex items-center relative overflow-hidden">
-      {/* Gradiente de fundo sutil azul-roxo */}
-      <div className="absolute inset-0">
+      {/* Futuristic Background with Grid */}
+      <div className="absolute inset-0 tech-grid">
         <div className={`absolute inset-0 ${
           theme === 'dark' 
-            ? 'bg-gradient-to-br from-slate-900 via-blue-900/20 to-purple-900/20' 
-            : 'bg-gradient-to-br from-blue-50/30 via-indigo-50/20 to-purple-50/30'
+            ? 'bg-gradient-to-br from-[#0a0a1a] via-[#1a0a2a] to-[#0a1a2a]' 
+            : 'bg-gradient-to-br from-[#f0f4ff] via-[#e8f0ff] to-[#f0e8ff]'
         }`}></div>
+        
+        {/* Animated Scan Lines */}
+        <div className="scanline-effect absolute inset-0" />
+        
+        {/* Geometric Corner Accents */}
+        <div className="absolute top-20 left-10 w-32 h-32 border-2 border-cyan-400/30" style={{
+          clipPath: 'polygon(0 0, 100% 0, 100% 30%, 70% 30%, 70% 70%, 30% 70%, 30% 100%, 0 100%)'
+        }} />
+        <div className="absolute bottom-20 right-10 w-32 h-32 border-2 border-magenta-400/30" style={{
+          clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 0 100%, 0 70%, 30% 70%, 30% 30%, 70% 30%, 70% 0)'
+        }} />
       </div>
 
       {/* Background Pattern Sutil */}
@@ -80,76 +89,122 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-            <h1 className={`text-5xl lg:text-7xl font-bold mb-6 leading-tight ${
-              theme === 'dark' ? 'text-white' : 'text-gray-900'
-            }`}>
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <motion.h1 
+              className={`text-5xl lg:text-7xl font-bold mb-6 leading-tight ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'<'}</span>
               Olá,
               <br />
               eu sou{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="neon-text-cyan relative">
                 Carlos Henrique
               </span>
-            </h1>
+              <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{' />'}</span>
+            </motion.h1>
             
-            <p className={`text-xl font-semibold mb-8 ${
-              theme === 'dark' ? 'text-blue-300' : 'text-indigo-700'
-            }`}>
-              Desenvolvedor Frontend Júnior
-            </p>
+            <motion.p 
+              className={`text-xl font-semibold mb-2 font-mono ${
+                theme === 'dark' ? 'text-green-400' : 'text-green-600'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <span className="text-magenta-400">const</span> role = <span className="neon-text-green">&quot;Desenvolvedor Frontend&quot;</span>;
+            </motion.p>
             
-            <a href="#about" className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 mb-8 shadow-lg hover:shadow-xl">
-              Sobre Mim ➔
-            </a>
+            <motion.p 
+              className={`text-sm mb-8 font-mono ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              {'// Criando experiências digitais do futuro'}
+            </motion.p>
+            
+            <motion.a 
+              href="#about" 
+              className="futuristic-btn inline-block relative px-8 py-3 rounded font-semibold mb-8 overflow-hidden group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              aria-label="Ir para seção sobre mim"
+            >
+              <span className="relative z-10">Sobre Mim ➔</span>
+            </motion.a>
             
             {/* Social Links com cores mais profissionais */}
-            <div className="flex gap-4">
-              <a 
+            <motion.div 
+              className="flex gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <motion.a 
                 href="https://www.linkedin.com/in/carlos-henriqueti/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 title="LinkedIn Profile"
-                className={`w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300 ${
-                  theme === 'dark' 
-                    ? 'bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-blue-500/20' 
-                    : 'bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-blue-500/20'
-                }`}
+                aria-label="Perfil no LinkedIn"
+                className="w-12 h-12 rounded-lg flex items-center justify-center text-white transition-all duration-300 cyber-border bg-gradient-to-br from-blue-500/20 to-cyan-500/20 hover:from-blue-500/40 hover:to-cyan-500/40 backdrop-blur-sm"
+                style={{ boxShadow: '0 0 20px rgba(0, 240, 255, 0.3)' }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <Linkedin size={20} />
-              </a>
-              <a 
+                <Linkedin size={20} aria-hidden="true" />
+              </motion.a>
+              <motion.a 
                 href="https://github.com/CarlosHenriqueTI" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 title="GitHub Profile"
-                className={`w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300 ${
-                  theme === 'dark' 
-                    ? 'bg-gray-700 hover:bg-gray-800 shadow-lg hover:shadow-gray-500/20' 
-                    : 'bg-gray-800 hover:bg-gray-900 shadow-lg hover:shadow-gray-500/20'
-                }`}
+                aria-label="Perfil no GitHub"
+                className="w-12 h-12 rounded-lg flex items-center justify-center text-white transition-all duration-300 cyber-border bg-gradient-to-br from-gray-500/20 to-purple-500/20 hover:from-gray-500/40 hover:to-purple-500/40 backdrop-blur-sm"
+                style={{ boxShadow: '0 0 20px rgba(168, 85, 247, 0.3)' }}
+                whileHover={{ scale: 1.1, rotate: -5 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <Github size={20} />
-              </a>
-              <a 
+                <Github size={20} aria-hidden="true" />
+              </motion.a>
+              <motion.a 
                 href="mailto:carloshenriqueti09@gmail.com"
                 title="Send Email"
-                className={`w-12 h-12 rounded-full flex items-center justify-center text-white transition-all duration-300 ${
-                  theme === 'dark' 
-                    ? 'bg-indigo-600 hover:bg-indigo-700 shadow-lg hover:shadow-indigo-500/20' 
-                    : 'bg-indigo-600 hover:bg-indigo-700 shadow-lg hover:shadow-indigo-500/20'
-                }`}
+                aria-label="Enviar email"
+                className="w-12 h-12 rounded-lg flex items-center justify-center text-white transition-all duration-300 cyber-border bg-gradient-to-br from-pink-500/20 to-magenta-500/20 hover:from-pink-500/40 hover:to-magenta-500/40 backdrop-blur-sm"
+                style={{ boxShadow: '0 0 20px rgba(255, 0, 255, 0.3)' }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <Mail size={20} />
-              </a>
-            </div>
+                <Mail size={20} aria-hidden="true" />
+              </motion.a>
+            </motion.div>
 
             {/* Contador de Visitas */}
-            <div className={`mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm border transition-all duration-300 ${
-              theme === 'dark' 
-                ? 'bg-slate-800/50 border-slate-700/50 text-gray-300' 
-                : 'bg-white/80 border-gray-200/50 text-gray-700'
-            }`}>
-              <Eye size={16} className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} />
+            <motion.div 
+              className={`mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm border transition-all duration-300 glass-card ${
+                theme === 'dark' 
+                  ? 'bg-slate-800/50 border-slate-700/50 text-gray-300' 
+                  : 'bg-white/80 border-gray-200/50 text-gray-700'
+              }`}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1 }}
+            >
+              <Eye size={16} className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} aria-hidden="true" />
               <span className="text-sm font-medium">
                 {visitCount > 0 ? (
                   <>
@@ -167,32 +222,52 @@ export default function HeroSection() {
                   </span>
                 )}
               </span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Content - Avatar Profissional */}
-          <div className={`flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+          <motion.div 
+            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             <div className="relative">
               {/* Gradiente de fundo profissional azul-roxo */}
-              <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full absolute -z-10 -top-4 -left-4 shadow-2xl"></div>
+              <motion.div 
+                className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full absolute -z-10 -top-4 -left-4 shadow-2xl"
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  rotate: [0, 5, 0]
+                }}
+                transition={{ 
+                  duration: 4,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
+              />
               
               {/* Container da imagem com borda sutil */}
-              <div className={`w-72 h-72 lg:w-88 lg:h-88 rounded-full overflow-hidden relative border-4 ${
-                theme === 'dark' 
-                  ? 'border-slate-700 bg-slate-800 shadow-2xl' 
-                  : 'border-white bg-white shadow-2xl'
-              }`}>
+              <motion.div 
+                className={`w-72 h-72 lg:w-88 lg:h-88 rounded-full overflow-hidden relative border-4 ${
+                  theme === 'dark' 
+                    ? 'border-slate-700 bg-slate-800 shadow-2xl' 
+                    : 'border-white bg-white shadow-2xl'
+                }`}
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                transition={{ duration: 0.3 }}
+              >
                 <ProfileImage
                   src="/perfil.png"
                   alt="Carlos Henrique - Desenvolvedor Frontend"
                   width={350}
                   height={350}
-                  className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+                  className="w-full h-full object-cover object-center"
                   placeholder={false}
                 />
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -89,48 +89,28 @@ export default function Contact() {
 
   return (
     <section id="contact" className="min-h-screen flex items-center relative overflow-hidden py-20">
-      {/* Gradiente de fundo sutil azul-roxo */}
+      {/* Futuristic Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className={`absolute inset-0 ${
+        <div className={`absolute inset-0 tech-grid ${
           theme === 'dark' 
-            ? 'bg-gradient-to-br from-slate-900 via-blue-900/10 to-purple-900/10' 
-            : 'bg-gradient-to-br from-blue-50/20 via-indigo-50/10 to-purple-50/20'
+            ? 'bg-gradient-to-br from-[#0a0a1a] via-[#1a0a2a] to-[#0a1a2a]' 
+            : 'bg-gradient-to-br from-[#f0f4ff] via-[#e8f0ff] to-[#f0e8ff]'
         }`}></div>
+        <div className="scanline-effect"></div>
       </div>
 
-      {/* Background Pattern Sutil */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none">
-        <div className={`absolute top-20 left-10 w-1 h-1 rounded-full ${
-          theme === 'dark' ? 'bg-blue-400' : 'bg-blue-500'
-        }`}></div>
-        <div className={`absolute top-32 right-32 w-0.5 h-0.5 rounded-full ${
-          theme === 'dark' ? 'bg-purple-400' : 'bg-purple-500'
-        }`}></div>
-        <div className={`absolute bottom-40 left-20 w-1 h-1 rounded-full ${
-          theme === 'dark' ? 'bg-indigo-400' : 'bg-indigo-500'
-        }`}></div>
-        <div className={`absolute top-60 right-1/4 w-0.5 h-0.5 rounded-full ${
-          theme === 'dark' ? 'bg-blue-400' : 'bg-blue-500'
-        }`}></div>
-        
-        {/* Connection Lines Sutis */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 800">
-          <line x1="80" y1="160" x2="256" y2="256" stroke={theme === 'dark' ? '#3B82F6' : '#6366F1'} strokeWidth="0.3" opacity="0.3"/>
-          <line x1="256" y1="256" x2="800" y2="160" stroke={theme === 'dark' ? '#8B5CF6' : '#8B5CF6'} strokeWidth="0.3" opacity="0.3"/>
-          <line x1="160" y1="640" x2="640" y2="480" stroke={theme === 'dark' ? '#6366F1' : '#3B82F6'} strokeWidth="0.3" opacity="0.3"/>
-        </svg>
-      </div>
+      {/* Geometric Accents */}
+      <div className="absolute top-10 right-10 geometric-corner opacity-30 pointer-events-none" style={{ width: '64px', height: '64px' }}></div>
+      <div className="absolute bottom-10 left-10 geometric-corner opacity-30 pointer-events-none" style={{ width: '48px', height: '48px', transform: 'rotate(180deg)' }}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
         <div className="text-center mb-6 sm:mb-8 lg:mb-10">
-          <h2 className={`text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 ${
-            theme === 'dark' 
-              ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500' 
-              : 'text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600'
-          }`}>
-            Entre em Contato
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 font-mono neon-text-magenta">
+            <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'<'}</span>
+            Contact
+            <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'/>'}</span>
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+          <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 via-magenta-400 to-purple-400 mx-auto rounded-full" style={{ boxShadow: '0 0 10px rgba(0, 240, 255, 0.5)' }}></div>
           <p className={`text-sm sm:text-base mt-3 sm:mt-4 max-w-2xl mx-auto px-2 leading-relaxed ${
             theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
           }`}>
@@ -143,12 +123,10 @@ export default function Contact() {
           className="space-y-4 sm:space-y-6 max-w-xl mx-auto relative z-30"
         >
           <div>
-            <label htmlFor="name" className={`block text-sm sm:text-base lg:text-lg font-bold mb-2 ${
-              theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+            <label htmlFor="name" className={`block text-sm sm:text-base lg:text-lg font-bold mb-2 font-mono ${
+              theme === 'dark' ? 'text-cyan-300' : 'text-cyan-700'
             }`}>
-              <User size={16} className={`inline-block mr-2 sm:w-[20px] sm:h-[20px] ${
-                theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
-              }`} /> Nome
+              <User size={16} className="inline-block mr-2 sm:w-[20px] sm:h-[20px] neon-text-cyan" /> Nome
             </label>
             <input
               type="text"
@@ -157,10 +135,10 @@ export default function Contact() {
               value={formData.name}
               onChange={handleInputChange}
               disabled={isSubmitting}
-              className={`shadow-inner border rounded-lg sm:rounded-xl w-full py-2 sm:py-3 px-3 sm:px-4 leading-tight focus:outline-none focus:ring-2 transition-all duration-300 text-sm sm:text-base ${
+              className={`cyber-border rounded-lg sm:rounded-xl w-full py-2 sm:py-3 px-3 sm:px-4 leading-tight focus:outline-none transition-all duration-300 text-sm sm:text-base font-mono ${
                 theme === 'dark' 
-                  ? 'bg-slate-800/50 backdrop-blur border-slate-700/50 text-gray-100 focus:ring-blue-500 focus:border-blue-500 hover:border-slate-600/50 disabled:opacity-50' 
-                  : 'bg-white/90 backdrop-blur border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 disabled:opacity-50'
+                  ? 'bg-[#0a0a1a]/80 backdrop-blur text-cyan-100 focus:shadow-[0_0_15px_rgba(0,240,255,0.5)] disabled:opacity-50' 
+                  : 'bg-white/90 backdrop-blur text-cyan-900 focus:shadow-[0_0_15px_rgba(0,240,255,0.3)] disabled:opacity-50'
               }`}
               placeholder="Seu nome completo"
               required
@@ -168,12 +146,10 @@ export default function Contact() {
           </div>
           
           <div>
-            <label htmlFor="email" className={`block text-sm sm:text-base lg:text-lg font-bold mb-2 ${
-              theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+            <label htmlFor="email" className={`block text-sm sm:text-base lg:text-lg font-bold mb-2 font-mono ${
+              theme === 'dark' ? 'text-magenta-300' : 'text-magenta-700'
             }`}>
-              <Mail size={16} className={`inline-block mr-2 sm:w-[20px] sm:h-[20px] ${
-                theme === 'dark' ? 'text-purple-400' : 'text-purple-600'
-              }`} /> E-mail
+              <Mail size={16} className="inline-block mr-2 sm:w-[20px] sm:h-[20px] neon-text-magenta" /> E-mail
             </label>
             <input
               type="email"
@@ -182,10 +158,10 @@ export default function Contact() {
               value={formData.email}
               onChange={handleInputChange}
               disabled={isSubmitting}
-              className={`shadow-inner border rounded-lg sm:rounded-xl w-full py-2 sm:py-3 px-3 sm:px-4 leading-tight focus:outline-none focus:ring-2 transition-all duration-300 text-sm sm:text-base ${
+              className={`cyber-border rounded-lg sm:rounded-xl w-full py-2 sm:py-3 px-3 sm:px-4 leading-tight focus:outline-none transition-all duration-300 text-sm sm:text-base font-mono ${
                 theme === 'dark' 
-                  ? 'bg-slate-800/50 backdrop-blur border-slate-700/50 text-gray-100 focus:ring-purple-500 focus:border-purple-500 hover:border-slate-600/50 disabled:opacity-50' 
-                  : 'bg-white/90 backdrop-blur border-gray-300 text-gray-900 focus:ring-purple-500 focus:border-purple-500 hover:border-gray-400 disabled:opacity-50'
+                  ? 'bg-[#0a0a1a]/80 backdrop-blur text-magenta-100 focus:shadow-[0_0_15px_rgba(255,0,255,0.5)] disabled:opacity-50' 
+                  : 'bg-white/90 backdrop-blur text-magenta-900 focus:shadow-[0_0_15px_rgba(255,0,255,0.3)] disabled:opacity-50'
               }`}
               placeholder="seu.email@exemplo.com"
               required
@@ -193,12 +169,10 @@ export default function Contact() {
           </div>
           
           <div>
-            <label htmlFor="message" className={`block text-sm sm:text-base lg:text-lg font-bold mb-2 ${
-              theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+            <label htmlFor="message" className={`block text-sm sm:text-base lg:text-lg font-bold mb-2 font-mono ${
+              theme === 'dark' ? 'text-green-300' : 'text-green-700'
             }`}>
-              <MessageSquare size={16} className={`inline-block mr-2 sm:w-[20px] sm:h-[20px] ${
-                theme === 'dark' ? 'text-indigo-400' : 'text-indigo-600'
-              }`} /> Mensagem
+              <MessageSquare size={16} className="inline-block mr-2 sm:w-[20px] sm:h-[20px] neon-text-green" /> Mensagem
             </label>
             <textarea
               id="message"
@@ -207,10 +181,10 @@ export default function Contact() {
               onChange={handleInputChange}
               disabled={isSubmitting}
               rows={4}
-              className={`shadow-inner border rounded-lg sm:rounded-xl w-full py-2 sm:py-3 px-3 sm:px-4 leading-tight focus:outline-none focus:ring-2 transition-all duration-300 resize-none text-sm sm:text-base ${
+              className={`cyber-border rounded-lg sm:rounded-xl w-full py-2 sm:py-3 px-3 sm:px-4 leading-tight focus:outline-none transition-all duration-300 resize-none text-sm sm:text-base font-mono ${
                 theme === 'dark' 
-                  ? 'bg-slate-800/50 backdrop-blur border-slate-700/50 text-gray-100 focus:ring-indigo-500 focus:border-indigo-500 hover:border-slate-600/50 disabled:opacity-50' 
-                  : 'bg-white/90 backdrop-blur border-gray-300 text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 hover:border-gray-400 disabled:opacity-50'
+                  ? 'bg-[#0a0a1a]/80 backdrop-blur text-green-100 focus:shadow-[0_0_15px_rgba(0,255,136,0.5)] disabled:opacity-50' 
+                  : 'bg-white/90 backdrop-blur text-green-900 focus:shadow-[0_0_15px_rgba(0,255,136,0.3)] disabled:opacity-50'
               }`}
               placeholder="Conte-me sobre sua ideia, projeto ou oportunidade..."
               required
@@ -221,21 +195,17 @@ export default function Contact() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full font-bold py-3 px-6 rounded-xl focus:outline-none focus:ring-2 transition-all duration-300 flex items-center justify-center text-lg shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed relative z-40 ${
-              theme === 'dark' 
-                ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white focus:ring-blue-500' 
-                : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white focus:ring-blue-400'
-            }`}
+            className="futuristic-btn w-full font-bold font-mono py-3 px-6 rounded focus:outline-none transition-all duration-300 flex items-center justify-center text-lg disabled:opacity-60 disabled:cursor-not-allowed relative overflow-hidden group z-40"
           >
             {isSubmitting ? (
               <>
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
-                <span>Enviando...</span>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3 relative z-10"></div>
+                <span className="relative z-10">Enviando...</span>
               </>
             ) : (
               <>
-                <span>Enviar Mensagem</span>
-                <Send size={20} className="ml-3" />
+                <span className="relative z-10">Enviar Mensagem</span>
+                <Send size={20} className="ml-3 relative z-10" />
               </>
             )}
           </button>          {/* Informações de contato alternativas */}

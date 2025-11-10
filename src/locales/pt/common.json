@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "skills": "Habilidades",
+    "journey": "Trajetória",
+    "projects": "Projetos",
+    "contact": "Contato"
+  },
+  "hero": {
+    "greeting": "Olá,",
+    "intro": "eu sou",
+    "role": "Desenvolvedor Frontend Júnior",
+    "cta": "Sobre Mim",
+    "visits": "visitas",
+    "visit": "visita"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "description": "Desenvolvedor Frontend com paixão por criar experiências web modernas e acessíveis."
+  },
+  "skills": {
+    "title": "Habilidades",
+    "coding": "Habilidades Técnicas",
+    "professional": "Competências Profissionais"
+  },
+  "projects": {
+    "title": "Meus Projetos",
+    "viewProject": "Ver Projeto",
+    "adminAccess": "Acesso Admin"
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "name": "Nome",
+    "email": "E-mail",
+    "message": "Mensagem",
+    "send": "Enviar Mensagem"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados.",
+    "madeWith": "Feito com"
+  }
+}
