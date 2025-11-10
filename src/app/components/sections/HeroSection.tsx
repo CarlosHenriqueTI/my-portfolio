@@ -5,10 +5,12 @@ import { Github, Linkedin, Mail, Eye } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ProfileImage from '../ProfileImage';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function HeroSection() {
   const [visitCount, setVisitCount] = useState(0);
   const { theme } = useTheme();
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Sistema de contador de visitas
@@ -103,9 +105,9 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'<'}</span>
-              Olá,
+              {t('hero.greeting')}
               <br />
-              eu sou{' '}
+              {t('hero.iam')}{' '}
               <span className="neon-text-cyan relative">
                 Carlos Henrique
               </span>
@@ -120,7 +122,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <span className="text-magenta-400">const</span> role = <span className="neon-text-green">&quot;Desenvolvedor Frontend&quot;</span>;
+              <span className="text-magenta-400">const</span> role = <span className="neon-text-green">&quot;{t('hero.role')}&quot;</span>;
             </motion.p>
             
             <motion.p 
@@ -131,7 +133,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              {'// Criando experiências digitais do futuro'}
+              {t('hero.tagline')}
             </motion.p>
             
             <motion.a 
@@ -142,9 +144,9 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              aria-label="Ir para seção sobre mim"
+              aria-label={t('hero.cta')}
             >
-              <span className="relative z-10">Sobre Mim ➔</span>
+              <span className="relative z-10">{t('hero.cta')} ➔</span>
             </motion.a>
             
             {/* Social Links com cores mais profissionais */}
@@ -213,12 +215,12 @@ export default function HeroSection() {
                     </span>
                     {' '}
                     <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
-                      {visitCount === 1 ? 'visita' : 'visitas'}
+                      {visitCount === 1 ? t('hero.visit') : t('hero.visits')}
                     </span>
                   </>
                 ) : (
                   <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
-                    Carregando...
+                    {t('hero.loading')}
                   </span>
                 )}
               </span>

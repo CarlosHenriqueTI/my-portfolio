@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 import About from './components/sections/About';
@@ -68,7 +69,9 @@ function HomePageContent() {
 export default function HomePage() {
   return (
     <ThemeProvider>
-      <HomePageContent />
+      <LanguageProvider>
+        <HomePageContent />
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

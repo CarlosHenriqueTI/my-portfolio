@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Code, Award, Zap, TrendingUp, Monitor, Palette, GitBranch, Globe, Smartphone, Puzzle, Users, Search, Bolt } from 'lucide-react';
 import { skillsData } from '../../lib/data';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function Skills() {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,6 +14,7 @@ export default function Skills() {
   });
   const sectionRef = useRef<HTMLElement>(null);
   const { theme } = useTheme();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -119,7 +121,7 @@ export default function Skills() {
               </div>
               <h2 className="text-lg sm:text-2xl lg:text-3xl xl:text-4xl font-bold font-mono neon-text-magenta">
                 <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'<'}</span>
-                Skills
+                {t('skills.title')}
                 <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'/>'}</span>
               </h2>
               <div className="p-2 sm:p-3 rounded-lg cyber-border bg-gradient-to-r from-magenta-500/20 to-purple-500/20" style={{ boxShadow: '0 0 15px rgba(255, 0, 255, 0.3)' }}>
@@ -142,7 +144,7 @@ export default function Skills() {
                 </div>
                 <h3 className={`text-lg sm:text-xl lg:text-2xl font-semibold font-mono ${
                   theme === 'dark' ? 'neon-text-cyan' : 'text-cyan-600'
-                }`}>Tecnologias</h3>
+                }`}>{t('skills.tech')}</h3>
               </div>
               
               <div className="space-y-3 sm:space-y-4 lg:space-y-6">
@@ -189,7 +191,7 @@ export default function Skills() {
                 </div>
                 <h3 className={`text-lg sm:text-xl lg:text-2xl font-semibold font-mono ${
                   theme === 'dark' ? 'neon-text-magenta' : 'text-magenta-600'
-                }`}>Soft Skills</h3>
+                }`}>{t('skills.soft')}</h3>
               </div>
               
               <div className="space-y-3 sm:space-y-4 lg:space-y-6">

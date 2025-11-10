@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { User, Mail, MessageSquare, Send } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,6 +15,7 @@ export default function Contact() {
   });
   
   const { theme } = useTheme();
+  const { t } = useLanguage();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -107,14 +109,14 @@ export default function Contact() {
         <div className="text-center mb-6 sm:mb-8 lg:mb-10">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 font-mono neon-text-magenta">
             <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'<'}</span>
-            Contact
+            {t('contact.title')}
             <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'/>'}</span>
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 via-magenta-400 to-purple-400 mx-auto rounded-full" style={{ boxShadow: '0 0 10px rgba(0, 240, 255, 0.5)' }}></div>
           <p className={`text-sm sm:text-base mt-3 sm:mt-4 max-w-2xl mx-auto px-2 leading-relaxed ${
             theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
           }`}>
-            Vamos discutir oportunidades profissionais e projetos inovadores
+            {t('contact.description')}
           </p>
         </div>
         
@@ -126,7 +128,7 @@ export default function Contact() {
             <label htmlFor="name" className={`block text-sm sm:text-base lg:text-lg font-bold mb-2 font-mono ${
               theme === 'dark' ? 'text-cyan-300' : 'text-cyan-700'
             }`}>
-              <User size={16} className="inline-block mr-2 sm:w-[20px] sm:h-[20px] neon-text-cyan" /> Nome
+              <User size={16} className="inline-block mr-2 sm:w-[20px] sm:h-[20px] neon-text-cyan" /> {t('contact.name')}
             </label>
             <input
               type="text"
@@ -140,7 +142,7 @@ export default function Contact() {
                   ? 'bg-[#0a0a1a]/80 backdrop-blur text-cyan-100 focus:shadow-[0_0_15px_rgba(0,240,255,0.5)] disabled:opacity-50' 
                   : 'bg-white/90 backdrop-blur text-cyan-900 focus:shadow-[0_0_15px_rgba(0,240,255,0.3)] disabled:opacity-50'
               }`}
-              placeholder="Seu nome completo"
+              placeholder={t('contact.namePlaceholder')}
               required
             />
           </div>
@@ -149,7 +151,7 @@ export default function Contact() {
             <label htmlFor="email" className={`block text-sm sm:text-base lg:text-lg font-bold mb-2 font-mono ${
               theme === 'dark' ? 'text-magenta-300' : 'text-magenta-700'
             }`}>
-              <Mail size={16} className="inline-block mr-2 sm:w-[20px] sm:h-[20px] neon-text-magenta" /> E-mail
+              <Mail size={16} className="inline-block mr-2 sm:w-[20px] sm:h-[20px] neon-text-magenta" /> {t('contact.email')}
             </label>
             <input
               type="email"
@@ -163,7 +165,7 @@ export default function Contact() {
                   ? 'bg-[#0a0a1a]/80 backdrop-blur text-magenta-100 focus:shadow-[0_0_15px_rgba(255,0,255,0.5)] disabled:opacity-50' 
                   : 'bg-white/90 backdrop-blur text-magenta-900 focus:shadow-[0_0_15px_rgba(255,0,255,0.3)] disabled:opacity-50'
               }`}
-              placeholder="seu.email@exemplo.com"
+              placeholder={t('contact.emailPlaceholder')}
               required
             />
           </div>
@@ -172,7 +174,7 @@ export default function Contact() {
             <label htmlFor="message" className={`block text-sm sm:text-base lg:text-lg font-bold mb-2 font-mono ${
               theme === 'dark' ? 'text-green-300' : 'text-green-700'
             }`}>
-              <MessageSquare size={16} className="inline-block mr-2 sm:w-[20px] sm:h-[20px] neon-text-green" /> Mensagem
+              <MessageSquare size={16} className="inline-block mr-2 sm:w-[20px] sm:h-[20px] neon-text-green" /> {t('contact.message')}
             </label>
             <textarea
               id="message"
@@ -186,7 +188,7 @@ export default function Contact() {
                   ? 'bg-[#0a0a1a]/80 backdrop-blur text-green-100 focus:shadow-[0_0_15px_rgba(0,255,136,0.5)] disabled:opacity-50' 
                   : 'bg-white/90 backdrop-blur text-green-900 focus:shadow-[0_0_15px_rgba(0,255,136,0.3)] disabled:opacity-50'
               }`}
-              placeholder="Conte-me sobre sua ideia, projeto ou oportunidade..."
+              placeholder={t('contact.messagePlaceholder')}
               required
             ></textarea>
           </div>
@@ -200,11 +202,11 @@ export default function Contact() {
             {isSubmitting ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white mr-2 sm:mr-3 relative z-10"></div>
-                <span className="relative z-10 text-sm sm:text-base">Enviando...</span>
+                <span className="relative z-10 text-sm sm:text-base">{t('contact.sending')}</span>
               </>
             ) : (
               <>
-                <span className="relative z-10 text-sm sm:text-base">Enviar Mensagem</span>
+                <span className="relative z-10 text-sm sm:text-base">{t('contact.submit')}</span>
                 <Send size={18} className="ml-2 sm:ml-3 sm:w-5 sm:h-5 relative z-10" />
               </>
             )}
@@ -216,7 +218,7 @@ export default function Contact() {
           }`}>
             <p className={`text-xs sm:text-sm mb-3 sm:mb-4 ${
               theme === 'dark' ? 'text-gray-500' : 'text-gray-600'
-            }`}>Ou entre em contato diretamente:</p>
+            }`}>{t('contact.alternative')}</p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-xs sm:text-sm">
               <a 
                 href="mailto:carloshenriqueti09@gmail.com" 

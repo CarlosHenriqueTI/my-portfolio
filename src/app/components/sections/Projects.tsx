@@ -6,9 +6,11 @@ import { motion } from 'framer-motion';
 import { projectsData } from '../../lib/data';
 import ImageCarousel from '../ImageCarousel';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function Projects() {
   const { theme } = useTheme();
+  const { t } = useLanguage();
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -48,14 +50,14 @@ export default function Projects() {
         <div className="text-center mb-6 sm:mb-8 lg:mb-10">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 font-mono neon-text-magenta">
             <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'<'}</span>
-            Projetos
+            {t('projects.title')}
             <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'/>'}</span>
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 via-magenta-400 to-purple-400 mx-auto rounded-full" style={{ boxShadow: '0 0 10px rgba(0, 240, 255, 0.5)' }}></div>
           <p className={`text-sm sm:text-base mt-3 sm:mt-4 max-w-2xl mx-auto px-2 font-mono ${
             theme === 'dark' ? 'text-cyan-200' : 'text-cyan-700'
           }`}>
-            {'// '} Aplicando conhecimentos em React, TypeScript e tecnologias futuristas
+            {t('projects.description')}
           </p>
         </div>
         
@@ -114,7 +116,7 @@ export default function Projects() {
                     rel="noopener noreferrer" 
                     className="futuristic-btn inline-flex items-center justify-center px-3 sm:px-4 py-2 font-semibold font-mono rounded transition-all duration-300 text-center text-sm relative overflow-hidden group/btn"
                   >
-                    <span className="relative z-10 text-xs sm:text-sm">Ver Projeto</span>
+                    <span className="relative z-10 text-xs sm:text-sm">{t('projects.viewProject')}</span>
                     <Code size={14} className="ml-2 sm:w-[18px] sm:h-[18px] relative z-10" />
                   </a>
                   
@@ -127,7 +129,7 @@ export default function Projects() {
                       <a href={project.adminLink} target="_blank" rel="noopener noreferrer" className={`transition-colors duration-300 hover:underline ${
                         theme === 'dark' ? 'text-cyan-400 hover:text-cyan-300' : 'text-cyan-600 hover:text-cyan-500'
                       }`}>
-                        Acesso Admin
+                        {t('projects.adminAccess')}
                       </a>
                       <div className={`mt-1 ${
                         theme === 'dark' ? 'text-gray-600' : 'text-gray-500'

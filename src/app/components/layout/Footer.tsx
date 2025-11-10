@@ -3,9 +3,11 @@
 import React from 'react';
 import { Heart, Code, Coffee } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function Footer() {
   const { theme } = useTheme();
+  const { t } = useLanguage();
   
   return (
     <footer className="py-16 relative overflow-hidden border-t cyber-border">
@@ -42,13 +44,13 @@ export default function Footer() {
               theme === 'dark' ? 'text-cyan-300' : 'text-cyan-700'
             }`}>
               <div className="flex items-center gap-1">
-                <span>Feito com</span>
+                <span>{t('footer.madeWith')}</span>
                 <Heart size={12} className="text-magenta-400 animate-pulse sm:w-[14px] sm:h-[14px]" style={{ filter: 'drop-shadow(0 0 4px rgba(255, 0, 255, 0.6))' }} />
-                <span>e</span>
+                <span>{t('footer.and')}</span>
                 <Coffee size={12} className="text-yellow-400 sm:w-[14px] sm:h-[14px]" style={{ filter: 'drop-shadow(0 0 4px rgba(255, 255, 0, 0.6))' }} />
               </div>
               <div className="flex items-center gap-1">
-                <span>usando</span>
+                <span>{t('footer.using')}</span>
                 <Code size={12} className="neon-text-cyan sm:w-[14px] sm:h-[14px]" />
                 <span>React & Next.js</span>
               </div>
@@ -58,14 +60,14 @@ export default function Footer() {
             <p className={`text-xs sm:text-sm ${
               theme === 'dark' ? 'text-gray-500' : 'text-gray-600'
             }`}>
-              &copy; {new Date().getFullYear()} Carlos Henrique de Oliveira Henrique. Todos os direitos reservados.
+              &copy; {new Date().getFullYear()} Carlos Henrique de Oliveira Henrique. {t('footer.copyright')}
             </p>
             
             {/* Status disponibilidade */}
             <div className="mt-2 sm:mt-3">
               <span className="inline-flex items-center gap-1.5 px-2 sm:px-3 py-1 bg-green-500/20 rounded text-xs cyber-border font-mono" style={{ boxShadow: '0 0 10px rgba(0, 255, 136, 0.3)' }}>
                 <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full animate-pulse" style={{ boxShadow: '0 0 5px rgba(0, 255, 136, 0.8)' }}></div>
-                <span className="neon-text-green">Disponível para oportunidades</span>
+                <span className="neon-text-green">{t('footer.availability')}</span>
               </span>
             </div>
           </div>

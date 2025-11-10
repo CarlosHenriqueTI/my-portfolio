@@ -4,11 +4,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MapPin, Calendar, GraduationCap, Target, Heart } from 'lucide-react';
 import ProfileImage from '../ProfileImage';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const { theme } = useTheme();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,27 +30,27 @@ export default function About() {
   }, []);
 
   const stats = [
-    { icon: <Calendar className="text-blue-500" size={20} />, label: 'Idade', value: '25 anos' },
-    { icon: <MapPin className="text-indigo-500" size={20} />, label: 'Localização', value: 'RS, Brasil' },
-    { icon: <GraduationCap className="text-purple-500" size={20} />, label: 'Formação', value: 'ADS - UniSenac' },
-    { icon: <Target className="text-blue-600" size={20} />, label: 'Foco', value: 'Frontend React' }
+    { icon: <Calendar className="text-blue-500" size={20} />, label: t('about.age'), value: t('about.ageValue') },
+    { icon: <MapPin className="text-indigo-500" size={20} />, label: t('about.location'), value: t('about.locationValue') },
+    { icon: <GraduationCap className="text-purple-500" size={20} />, label: t('about.education'), value: t('about.educationValue') },
+    { icon: <Target className="text-blue-600" size={20} />, label: t('about.focus'), value: t('about.focusValue') }
   ];
 
   const highlights = [
     {
       icon: '💻',
-      title: 'Desenvolvimento Frontend',
-      description: 'Especializado em React.js, TypeScript e desenvolvimento de interfaces modernas e responsivas'
+      title: t('about.highlight1.title'),
+      description: t('about.highlight1.description')
     },
     {
       icon: '🎯',
-      title: 'Transição de Carreira',
-      description: 'Do Exército para a tecnologia, aplicando disciplina militar aos desafios do desenvolvimento'
+      title: t('about.highlight2.title'),
+      description: t('about.highlight2.description')
     },
     {
       icon: '🚀',
-      title: 'Aprendizado Contínuo',
-      description: 'Comprometido com a evolução constante e implementação das melhores práticas de desenvolvimento'
+      title: t('about.highlight3.title'),
+      description: t('about.highlight3.description')
     }
   ];
 
@@ -78,7 +80,7 @@ export default function About() {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 font-mono neon-text-magenta">
               <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'<'}</span>
-              About
+              {t('about.title')}
               <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'/>'}</span>
             </h2>
             <div className="w-20 h-1 bg-gradient-to-r from-cyan-400 via-magenta-400 to-purple-400 mx-auto rounded-full" style={{ boxShadow: '0 0 10px rgba(0, 240, 255, 0.5)' }}></div>
@@ -91,16 +93,13 @@ export default function About() {
               <p className={`text-sm sm:text-base lg:text-lg leading-relaxed ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                Sou um desenvolvedor frontend apaixonado por criar experiências digitais excepcionais. 
-                Com uma base sólida em React.js, TypeScript e design responsivo, transformo ideias em 
-                interfaces funcionais e atraentes.
+                {t('about.description1')}
               </p>
               
               <p className={`text-sm sm:text-base lg:text-lg leading-relaxed ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                Minha jornada na tecnologia começou com uma transição de carreira do exército, 
-                trazendo disciplina e dedicação para cada projeto que desenvolvo.
+                {t('about.description2')}
               </p>
             </div>
 
@@ -130,7 +129,7 @@ export default function About() {
                 className="futuristic-btn inline-flex items-center gap-2 px-6 sm:px-8 py-2 sm:py-3 rounded text-sm sm:text-base font-semibold font-mono transition-all duration-300 relative overflow-hidden group"
               >
                 <Heart size={18} className="relative z-10 sm:w-5 sm:h-5" />
-                <span className="relative z-10">Vamos Trabalhar Juntos</span>
+                <span className="relative z-10">{t('about.cta')}</span>
               </a>
             </div>
           </div>

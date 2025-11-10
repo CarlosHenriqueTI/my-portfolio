@@ -4,11 +4,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Briefcase, GraduationCap, MapPin, Calendar, Users } from 'lucide-react';
 import { educationData, experienceData } from '../../lib/data'; // Importa os dados
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function Journey() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const { theme } = useTheme();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,14 +54,14 @@ export default function Journey() {
           <div className="text-center mb-6 sm:mb-8 lg:mb-10">
             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 font-mono neon-text-magenta">
               <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'<'}</span>
-              Journey
+              {t('journey.title')}
               <span className={theme === 'dark' ? 'text-cyan-300' : 'text-cyan-600'}>{'/>'}</span>
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 via-magenta-400 to-purple-400 mx-auto rounded-full" style={{ boxShadow: '0 0 10px rgba(0, 240, 255, 0.5)' }}></div>
             <p className={`text-sm sm:text-base mt-3 sm:mt-4 max-w-2xl mx-auto px-2 leading-relaxed ${
               theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
             }`}>
-              Uma transição estratégica da liderança militar para a inovação tecnológica
+              {t('journey.description')}
             </p>
           </div>
 
@@ -72,7 +74,7 @@ export default function Journey() {
                 </div>
                 <h3 className={`text-lg sm:text-xl lg:text-2xl font-semibold font-mono ${
                   theme === 'dark' ? 'neon-text-cyan' : 'text-cyan-600'
-                }`}>Educação</h3>
+                }`}>{t('journey.education')}</h3>
               </div>
               <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                 {educationData.map((item, index) => (
@@ -134,7 +136,7 @@ export default function Journey() {
                 </div>
                 <h3 className={`text-lg sm:text-xl lg:text-2xl font-semibold font-mono ${
                   theme === 'dark' ? 'neon-text-magenta' : 'text-magenta-600'
-                }`}>Experiência Profissional</h3>
+                }`}>{t('journey.experience')}</h3>
               </div>
               <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                 {experienceData.map((item, index) => (

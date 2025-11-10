@@ -4,22 +4,21 @@ import { useState } from 'react';
 import { Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('pt');
   const { theme } = useTheme();
+  const { language, setLanguage } = useLanguage();
 
   const languages = [
-    { code: 'pt', name: 'Português', flag: '🇧🇷' },
-    { code: 'en', name: 'English', flag: '🇺🇸' }
+    { code: 'pt' as const, name: 'Português', flag: '🇧🇷' },
+    { code: 'en' as const, name: 'English', flag: '🇺🇸' }
   ];
 
-  const handleLanguageChange = (langCode: string) => {
-    setCurrentLang(langCode);
+  const handleLanguageChange = (langCode: 'pt' | 'en') => {
+    setLanguage(langCode);
     setIsOpen(false);
-    // Aqui você implementaria a mudança de idioma com next-intl
-    console.log('Language changed to:', langCode);
   };
 
   return (
@@ -35,7 +34,7 @@ export default function LanguageSelector() {
         aria-expanded={isOpen}
       >
         <Globe size={20} aria-hidden="true" />
-        <span className="text-sm font-medium uppercase">{currentLang}</span>
+        <span className="text-sm font-medium uppercase">{language}</span>
       </button>
 
       <AnimatePresence>
@@ -56,7 +55,7 @@ export default function LanguageSelector() {
                 key={lang.code}
                 onClick={() => handleLanguageChange(lang.code)}
                 className={`w-full px-4 py-3 text-left flex items-center gap-3 transition-colors ${
-                  currentLang === lang.code
+                  language === lang.code
                     ? theme === 'dark'
                       ? 'bg-blue-600 text-white'
                       : 'bg-blue-500 text-white'
