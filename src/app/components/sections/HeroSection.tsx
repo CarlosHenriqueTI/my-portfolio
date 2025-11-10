@@ -45,7 +45,7 @@ export default function HeroSection() {
         <div className="scanline-effect absolute inset-0" />
         
         {/* Geometric Corner Accents */}
-        <div className="absolute top-20 left-10 w-32 h-32 border-2 border-cyan-400/30" style={{
+        <div className="hidden md:block absolute top-20 left-10 w-32 h-32 border-2 border-cyan-400/30" style={{
           clipPath: 'polygon(0 0, 100% 0, 100% 30%, 70% 30%, 70% 70%, 30% 70%, 30% 100%, 0 100%)'
         }} />
         <div className="absolute bottom-20 right-10 w-32 h-32 border-2 border-magenta-400/30" style={{
@@ -95,7 +95,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <motion.h1 
-              className={`text-5xl lg:text-7xl font-bold mb-6 leading-tight ${
+              className={`text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight ${
                 theme === 'dark' ? 'text-white' : 'text-gray-900'
               }`}
               initial={{ opacity: 0, y: 20 }}
@@ -113,7 +113,7 @@ export default function HeroSection() {
             </motion.h1>
             
             <motion.p 
-              className={`text-xl font-semibold mb-2 font-mono ${
+              className={`text-base sm:text-lg md:text-xl font-semibold mb-2 font-mono ${
                 theme === 'dark' ? 'text-green-400' : 'text-green-600'
               }`}
               initial={{ opacity: 0, y: 20 }}
@@ -124,7 +124,7 @@ export default function HeroSection() {
             </motion.p>
             
             <motion.p 
-              className={`text-sm mb-8 font-mono ${
+              className={`text-xs sm:text-sm mb-6 sm:mb-8 font-mono ${
                 theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
               }`}
               initial={{ opacity: 0, y: 20 }}
@@ -136,7 +136,7 @@ export default function HeroSection() {
             
             <motion.a 
               href="#about" 
-              className="futuristic-btn inline-block relative px-8 py-3 rounded font-semibold mb-8 overflow-hidden group"
+              className="futuristic-btn inline-block relative px-6 sm:px-8 py-2 sm:py-3 rounded font-semibold text-sm sm:text-base mb-6 sm:mb-8 overflow-hidden group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}
@@ -149,7 +149,7 @@ export default function HeroSection() {
             
             {/* Social Links com cores mais profissionais */}
             <motion.div 
-              className="flex gap-4"
+              className="flex gap-3 sm:gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -160,12 +160,12 @@ export default function HeroSection() {
                 rel="noopener noreferrer"
                 title="LinkedIn Profile"
                 aria-label="Perfil no LinkedIn"
-                className="w-12 h-12 rounded-lg flex items-center justify-center text-white transition-all duration-300 cyber-border bg-gradient-to-br from-blue-500/20 to-cyan-500/20 hover:from-blue-500/40 hover:to-cyan-500/40 backdrop-blur-sm"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center text-white transition-all duration-300 cyber-border bg-gradient-to-br from-blue-500/20 to-cyan-500/20 hover:from-blue-500/40 hover:to-cyan-500/40 backdrop-blur-sm"
                 style={{ boxShadow: '0 0 20px rgba(0, 240, 255, 0.3)' }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <Linkedin size={20} aria-hidden="true" />
+                <Linkedin size={18} className="sm:w-5 sm:h-5" aria-hidden="true" />
               </motion.a>
               <motion.a 
                 href="https://github.com/CarlosHenriqueTI" 
@@ -173,29 +173,29 @@ export default function HeroSection() {
                 rel="noopener noreferrer"
                 title="GitHub Profile"
                 aria-label="Perfil no GitHub"
-                className="w-12 h-12 rounded-lg flex items-center justify-center text-white transition-all duration-300 cyber-border bg-gradient-to-br from-gray-500/20 to-purple-500/20 hover:from-gray-500/40 hover:to-purple-500/40 backdrop-blur-sm"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center text-white transition-all duration-300 cyber-border bg-gradient-to-br from-gray-500/20 to-purple-500/20 hover:from-gray-500/40 hover:to-purple-500/40 backdrop-blur-sm"
                 style={{ boxShadow: '0 0 20px rgba(168, 85, 247, 0.3)' }}
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <Github size={20} aria-hidden="true" />
+                <Github size={18} className="sm:w-5 sm:h-5" aria-hidden="true" />
               </motion.a>
               <motion.a 
                 href="mailto:carloshenriqueti09@gmail.com"
                 title="Send Email"
                 aria-label="Enviar email"
-                className="w-12 h-12 rounded-lg flex items-center justify-center text-white transition-all duration-300 cyber-border bg-gradient-to-br from-pink-500/20 to-magenta-500/20 hover:from-pink-500/40 hover:to-magenta-500/40 backdrop-blur-sm"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center text-white transition-all duration-300 cyber-border bg-gradient-to-br from-pink-500/20 to-magenta-500/20 hover:from-pink-500/40 hover:to-magenta-500/40 backdrop-blur-sm"
                 style={{ boxShadow: '0 0 20px rgba(255, 0, 255, 0.3)' }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <Mail size={20} aria-hidden="true" />
+                <Mail size={18} className="sm:w-5 sm:h-5" aria-hidden="true" />
               </motion.a>
             </motion.div>
 
             {/* Contador de Visitas */}
             <motion.div 
-              className={`mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm border transition-all duration-300 glass-card ${
+              className={`mt-6 sm:mt-8 inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full backdrop-blur-sm border transition-all duration-300 glass-card ${
                 theme === 'dark' 
                   ? 'bg-slate-800/50 border-slate-700/50 text-gray-300' 
                   : 'bg-white/80 border-gray-200/50 text-gray-700'
@@ -204,8 +204,8 @@ export default function HeroSection() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 1 }}
             >
-              <Eye size={16} className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} aria-hidden="true" />
-              <span className="text-sm font-medium">
+              <Eye size={14} className={`sm:w-4 sm:h-4 ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`} aria-hidden="true" />
+              <span className="text-xs sm:text-sm font-medium">
                 {visitCount > 0 ? (
                   <>
                     <span className={theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}>
@@ -235,7 +235,7 @@ export default function HeroSection() {
             <div className="relative">
               {/* Gradiente de fundo profissional azul-roxo */}
               <motion.div 
-                className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full absolute -z-10 -top-4 -left-4 shadow-2xl"
+                className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full absolute -z-10 -top-4 -left-4 shadow-2xl"
                 animate={{ 
                   scale: [1, 1.05, 1],
                   rotate: [0, 5, 0]
@@ -249,7 +249,7 @@ export default function HeroSection() {
               
               {/* Container da imagem com borda sutil */}
               <motion.div 
-                className={`w-72 h-72 lg:w-88 lg:h-88 rounded-full overflow-hidden relative border-4 ${
+                className={`w-56 h-56 sm:w-72 sm:h-72 lg:w-88 lg:h-88 rounded-full overflow-hidden relative border-4 ${
                   theme === 'dark' 
                     ? 'border-slate-700 bg-slate-800 shadow-2xl' 
                     : 'border-white bg-white shadow-2xl'

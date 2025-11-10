@@ -40,9 +40,9 @@ export default function Projects() {
         <div className="scanline-effect"></div>
       </div>
 
-      {/* Geometric Accents */}
-      <div className="absolute top-10 right-10 geometric-corner opacity-30" style={{ width: '64px', height: '64px' }}></div>
-      <div className="absolute bottom-10 left-10 geometric-corner opacity-30" style={{ width: '48px', height: '48px', transform: 'rotate(180deg)' }}></div>
+      {/* Geometric Accents - Hidden on mobile */}
+      <div className="hidden md:block absolute top-10 right-10 geometric-corner opacity-30" style={{ width: '64px', height: '64px' }}></div>
+      <div className="hidden md:block absolute bottom-10 left-10 geometric-corner opacity-30" style={{ width: '48px', height: '48px', transform: 'rotate(180deg)' }}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="text-center mb-6 sm:mb-8 lg:mb-10">

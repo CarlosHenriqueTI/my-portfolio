@@ -99,9 +99,9 @@ export default function Contact() {
         <div className="scanline-effect"></div>
       </div>
 
-      {/* Geometric Accents */}
-      <div className="absolute top-10 right-10 geometric-corner opacity-30 pointer-events-none" style={{ width: '64px', height: '64px' }}></div>
-      <div className="absolute bottom-10 left-10 geometric-corner opacity-30 pointer-events-none" style={{ width: '48px', height: '48px', transform: 'rotate(180deg)' }}></div>
+      {/* Geometric Accents - Hidden on mobile */}
+      <div className="hidden md:block absolute top-10 right-10 geometric-corner opacity-30 pointer-events-none" style={{ width: '64px', height: '64px' }}></div>
+      <div className="hidden md:block absolute bottom-10 left-10 geometric-corner opacity-30 pointer-events-none" style={{ width: '48px', height: '48px', transform: 'rotate(180deg)' }}></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
         <div className="text-center mb-6 sm:mb-8 lg:mb-10">
@@ -195,35 +195,37 @@ export default function Contact() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="futuristic-btn w-full font-bold font-mono py-3 px-6 rounded focus:outline-none transition-all duration-300 flex items-center justify-center text-lg disabled:opacity-60 disabled:cursor-not-allowed relative overflow-hidden group z-40"
+            className="futuristic-btn w-full font-bold font-mono py-2.5 sm:py-3 px-4 sm:px-6 rounded focus:outline-none transition-all duration-300 flex items-center justify-center text-base sm:text-lg disabled:opacity-60 disabled:cursor-not-allowed relative overflow-hidden group z-40"
           >
             {isSubmitting ? (
               <>
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3 relative z-10"></div>
-                <span className="relative z-10">Enviando...</span>
+                <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white mr-2 sm:mr-3 relative z-10"></div>
+                <span className="relative z-10 text-sm sm:text-base">Enviando...</span>
               </>
             ) : (
               <>
-                <span className="relative z-10">Enviar Mensagem</span>
-                <Send size={20} className="ml-3 relative z-10" />
+                <span className="relative z-10 text-sm sm:text-base">Enviar Mensagem</span>
+                <Send size={18} className="ml-2 sm:ml-3 sm:w-5 sm:h-5 relative z-10" />
               </>
             )}
-          </button>          {/* Informações de contato alternativas */}
-          <div className={`pt-6 border-t text-center ${
+          </button>
+          
+          {/* Informações de contato alternativas */}
+          <div className={`pt-4 sm:pt-6 border-t text-center ${
             theme === 'dark' ? 'border-gray-700/50' : 'border-gray-300/50'
           }`}>
-            <p className={`text-sm mb-4 ${
+            <p className={`text-xs sm:text-sm mb-3 sm:mb-4 ${
               theme === 'dark' ? 'text-gray-500' : 'text-gray-600'
             }`}>Ou entre em contato diretamente:</p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-sm">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-xs sm:text-sm">
               <a 
                 href="mailto:carloshenriqueti09@gmail.com" 
                 className={`transition-colors duration-300 flex items-center gap-2 hover:underline ${
                   theme === 'dark' ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-500'
                 }`}
               >
-                <Mail size={16} />
-                carloshenriqueti09@gmail.com
+                <Mail size={14} className="sm:w-4 sm:h-4" />
+                <span className="break-all">carloshenriqueti09@gmail.com</span>
               </a>
               <span className={`hidden sm:inline ${
                 theme === 'dark' ? 'text-gray-600' : 'text-gray-400'
