@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "journey": "Journey",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello,",
+    "intro": "I'm",
+    "role": "Junior Frontend Developer",
+    "cta": "About Me",
+    "visits": "visits",
+    "visit": "visit"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Frontend Developer passionate about creating modern and accessible web experiences."
+  },
+  "skills": {
+    "title": "Skills",
+    "coding": "Technical Skills",
+    "professional": "Professional Skills"
+  },
+  "projects": {
+    "title": "My Projects",
+    "viewProject": "View Project",
+    "adminAccess": "Admin Access"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "madeWith": "Made with"
+  }
+}
