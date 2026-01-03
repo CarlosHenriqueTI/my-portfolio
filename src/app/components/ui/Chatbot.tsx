@@ -2,131 +2,166 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, X, Bot, Loader2, PhoneCall } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
 
 interface ChatMessage {
+  id: string;
   role: 'user' | 'model';
   text: string;
+  timestamp: Date;
 }
 
 export default function Chatbot() {
+  const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: 'Olá! Sou seu assistente virtual. Como posso ajudá-lo a conhecer melhor o portfólio de Carlos Henrique?' },
-    { role: 'model', text: 'Você pode perguntar sobre:\n• Suas habilidades e tecnologias\n• Projetos desenvolvidos\n• Experiência profissional\n• Formas de contato' }
+    { 
+      id: '1',
+      role: 'model', 
+      text: 'Olá! Sou o assistente virtual. Como posso ajudar?',
+      timestamp: new Date()
+    },
+    { 
+      id: '2',
+      role: 'model', 
+      text: 'Posso informar sobre:\n• Habilidades e tecnologias\n• Projetos\n• Experiência\n• Contato',
+      timestamp: new Date()
+    }
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const suggestedQuestions = [
-    "Quais tecnologias Carlos domina?",
-    "Conte sobre a experiência dele",
-    "Como posso entrar em contato?",
-    "Quais projetos ele desenvolveu?"
+    { text: "Quais tecnologias você domina?", icon: "" },
+    { text: "Conte sobre sua experiência", icon: "" },
+    { text: "Como posso entrar em contato?", icon: "" },
+    { text: "Mostre-me seus projetos", icon: "" }
   ];
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const getPredefineResponse = (message: string): string | null => {
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen]);
+
+  const getIntelligentResponse = (message: string, context: ChatMessage[]): string | null => {
     const lowerMessage = message.toLowerCase();
+    const hasAskedBefore = context.some(msg => msg.role === 'user');
     
-    if (lowerMessage.includes('sobre') || lowerMessage.includes('quem') || lowerMessage.includes('carlos')) {
-      return 'Carlos Henrique é um desenvolvedor Frontend especializado em React.js e TypeScript. Com experiência militar e transição para tecnologia, ele combina disciplina e inovação em seus projetos. Atualmente estuda Análise e Desenvolvimento de Sistemas na UniSenac.';
+    // Saudações
+    if (lowerMessage.match(/\b(oi|olá|hey|hello|hi)\b/)) {
+      return hasAskedBefore 
+        ? 'Olá novamente! Em que mais posso ajudar?'
+        : 'Olá! Sou o assistente de Carlos Henrique. Como posso ajudar?';
     }
     
-    if (lowerMessage.includes('tecnologia') || lowerMessage.includes('skill') || lowerMessage.includes('habilidade')) {
-      return 'Carlos domina JavaScript, TypeScript, React.js, HTML5, CSS3, Git e tem experiência com consumo de APIs e design responsivo. Suas principais soft skills incluem resolução de problemas, trabalho em equipe e proatividade.';
+    // Sobre Carlos
+    if (lowerMessage.match(/\b(sobre|quem|perfil|você|carlos|desenvolvedor)\b/)) {
+      return 'Carlos Henrique é Desenvolvedor Frontend especializado em React.js, Next.js e TypeScript.\n\nEspecialidades:\n• React.js & Next.js\n• TypeScript\n• UI/UX Design\n\n6 anos no Exército Brasileiro, trazendo disciplina e liderança para tech.\n\nCursando Análise e Desenvolvimento de Sistemas na UniSenac.';
     }
     
-    if (lowerMessage.includes('projeto') || lowerMessage.includes('portfólio')) {
-      return 'O portfólio inclui diversos projetos desenvolvidos com React.js e tecnologias modernas. Cada projeto demonstra diferentes aspectos de suas habilidades técnicas e criatividade. Você pode navegar pela seção "Projetos" para ver os detalhes.';
+    // Tecnologias e habilidades
+    if (lowerMessage.match(/\b(tecnologia|stack|skill|habilidade|domina|sabe|conhece|linguagem|framework)\b/)) {
+      return 'Stack Tecnológico:\n\nFrontend:\n• JavaScript & TypeScript\n• React.js & Next.js\n• HTML5 & CSS3\n• Tailwind CSS\n\nFerramentas:\n• Git & GitHub\n• APIs RESTful\n• Design Responsivo\n• Figma';
     }
     
-    if (lowerMessage.includes('contato') || lowerMessage.includes('falar') || lowerMessage.includes('conversar')) {
-      return 'Você pode entrar em contato com Carlos através do formulário na seção "Contato", pelo LinkedIn, GitHub ou clicando no botão do WhatsApp aqui no chat para uma conversa direta!';
+    // Projetos
+    if (lowerMessage.match(/\b(projeto|portfólio|trabalho|desenvolveu|criou|fez)\b/)) {
+      return 'Portfólio de Projetos:\n\n• Aplicações web com React/Next.js\n• Interfaces responsivas\n• Integração com APIs\n• Design systems\n\nVisite a seção "Projetos" para ver detalhes.';
     }
     
-    if (lowerMessage.includes('experiência') || lowerMessage.includes('trabalho') || lowerMessage.includes('carreira')) {
-      return 'Carlos tem 6 anos de experiência no Exército Brasileiro, onde desenvolveu liderança e disciplina. Atualmente está em transição para a área de tecnologia, com mais de 2 anos de estudo e prática em desenvolvimento web.';
+    // Contato
+    if (lowerMessage.match(/\b(contato|falar|conversar|email|telefone|linkedin|whatsapp|github)\b/)) {
+      return 'Formas de contato:\n\n• WhatsApp (botão abaixo)\n• Formulário no site\n• LinkedIn\n• GitHub';
     }
     
-    if (lowerMessage.includes('oi') || lowerMessage.includes('olá') || lowerMessage.includes('hello')) {
-      return 'Olá! Fico feliz em conversar com você! Como posso ajudá-lo a conhecer melhor o trabalho e as competências de Carlos Henrique?';
+    // Experiência
+    if (lowerMessage.match(/\b(experiência|trabalhou|carreira|exército|militar|trajetória)\b/)) {
+      return 'Experiência Profissional:\n\nExército Brasileiro (6 anos)\n• Liderança de equipes\n• Gestão sob pressão\n• Disciplina e organização\n\nTransição para Tech:\n• +2 anos estudando desenvolvimento web\n• Projetos práticos';
+    }
+    
+    // Formação
+    if (lowerMessage.match(/\b(estuda|faculdade|curso|formação|educação|universidade)\b/)) {
+      return 'Formação Acadêmica:\n\nAnálise e Desenvolvimento de Sistemas\nUniSenac - Em andamento\n\nAprendizado contínuo através de cursos online, projetos práticos e comunidades tech.';
+    }
+    
+    // Agradecimento
+    if (lowerMessage.match(/\b(obrigad|valeu|thanks|thank)\b/)) {
+      return 'Por nada! Se tiver mais dúvidas, use o botão do WhatsApp.';
+    }
+    
+    // Despedida
+    if (lowerMessage.match(/\b(tchau|adeus|até|bye|falou)\b/)) {
+      return 'Até logo! Explore o portfólio e entre em contato se precisar.';
     }
     
     return null;
   };
 
+  const simulateTyping = async (): Promise<void> => {
+    return new Promise((resolve) => {
+      setIsTyping(true);
+      setTimeout(() => {
+        setIsTyping(false);
+        resolve();
+      }, 600);
+    });
+  };
+
   const handleSendMessage = async (messageText?: string) => {
     const textToSend = messageText || inputMessage.trim();
-    if (textToSend === '') return;
+    if (textToSend === '' || isLoading) return;
 
-    const userMessage: ChatMessage = { role: 'user', text: textToSend };
+    const userMessage: ChatMessage = { 
+      id: Date.now().toString(),
+      role: 'user', 
+      text: textToSend,
+      timestamp: new Date()
+    };
+    
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setInputMessage('');
     setIsLoading(true);
     setShowSuggestions(false);
 
-    const predefinedResponse = getPredefineResponse(userMessage.text);
-    if (predefinedResponse) {
-      setTimeout(() => {
-        setMessages((prevMessages) => [...prevMessages, { role: 'model', text: predefinedResponse }]);
-        setIsLoading(false);
-      }, 1000);
+    await simulateTyping();
+
+    const intelligentResponse = getIntelligentResponse(userMessage.text, messages);
+    
+    if (intelligentResponse) {
+      const modelMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        role: 'model',
+        text: intelligentResponse,
+        timestamp: new Date()
+      };
+      setMessages((prevMessages) => [...prevMessages, modelMessage]);
+      setIsLoading(false);
       return;
     }
 
-    try {
-      // Simula a chamada à API Gemini (comentada para evitar erros de API)
-      /*
-      const chatHistory = messages.map(msg => ({ role: msg.role, parts: [{ text: msg.text }] }));
-      chatHistory.push({ role: "user", parts: [{ text: userMessage.text }] });
-
-      const payload = { contents: chatHistory };
-      const apiKey = ""; // Deixe como vazio, a plataforma irá injetar a chave
-      const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      const result = await response.json();
-
-      if (result.candidates && result.candidates.length > 0 &&
-          result.candidates[0].content && result.candidates[0].content.parts &&
-          result.candidates[0].content.parts.length > 0) {
-        const modelResponseText = result.candidates[0].content.parts[0].text;
-        setMessages((prevMessages) => [...prevMessages, { role: 'model', text: modelResponseText }]);
-      } else {
-        throw new Error('API response format error');
-      }
-      */
-      
-      setTimeout(() => {
-        setMessages((prevMessages) => [...prevMessages, { 
-          role: 'model', 
-          text: 'Desculpe, não tenho uma resposta específica para sua pergunta no momento. Mas posso ajudá-lo com informações sobre as habilidades, projetos, experiência ou formas de contato de Carlos Henrique. Ou clique no botão do WhatsApp para falar diretamente!' 
-        }]);
-        setIsLoading(false);
-      }, 1500);
-      
-    } catch (error) {
-      console.error('Erro ao processar mensagem:', error);
-      setMessages((prevMessages) => [...prevMessages, { 
-        role: 'model', 
-        text: 'Desculpe, ocorreu um erro. Mas posso ajudá-lo com informações sobre Carlos Henrique! Tente perguntar sobre suas habilidades, projetos ou experiência. Ou use o botão do WhatsApp para contato direto.' 
-      }]);
-      setIsLoading(false);
-    }
+    // Resposta fallback com sugestões contextuais
+    const fallbackMessage: ChatMessage = {
+      id: (Date.now() + 1).toString(),
+      role: 'model',
+      text: 'Desculpe, não entendi. Posso ajudar com:\n\n• Tecnologias\n• Projetos\n• Experiência\n• Contato',
+      timestamp: new Date()
+    };
+    
+    setMessages((prevMessages) => [...prevMessages, fallbackMessage]);
+    setIsLoading(false);
   };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '5553981527678'; // Seu número de telefone com código do país (55) e DDD (53)
+    const phoneNumber = '5553981527678';
     const message = encodeURIComponent('Olá, gostaria de conversar sobre o seu portfólio.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
@@ -135,52 +170,140 @@ export default function Chatbot() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-lg hover:shadow-blue-500/25 hover:from-blue-700 hover:to-purple-700 transition-all duration-300 z-50 transform hover:scale-110"
+        className={`fixed bottom-6 right-6 p-3.5 rounded-full shadow-lg transition-all duration-200 z-50 ${
+          theme === 'dark'
+            ? 'bg-gray-800 hover:bg-gray-700 text-white'
+            : 'bg-gray-900 hover:bg-gray-800 text-white'
+        }`}
         aria-label={isOpen ? "Fechar Chatbot" : "Abrir Chatbot"}
       >
-        {isOpen ? <X size={28} /> : <Bot size={28} />}
+        {isOpen ? (
+          <X size={22} />
+        ) : (
+          <Bot size={22} />
+        )}
       </button>
 
       {isOpen && (
-        <div className="fixed bottom-20 right-6 w-80 max-h-[500px] bg-gray-900/95 backdrop-blur-xl rounded-xl shadow-2xl flex flex-col z-40 border border-gray-700/50 animate-fade-in-up">
-          <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur p-4 rounded-t-xl flex justify-between items-center border-b border-gray-700/50">
-            <h3 className="text-lg font-semibold text-white">Assistente Virtual</h3>
+        <div className={`fixed bottom-24 right-6 w-96 max-w-[calc(100vw-3rem)] max-h-[600px] rounded-lg shadow-xl flex flex-col z-40 ${
+          theme === 'dark'
+            ? 'bg-gray-900 border border-gray-800'
+            : 'bg-white border border-gray-200'
+        }`}>
+          {/* Header */}
+          <div className={`p-4 rounded-t-lg flex justify-between items-center border-b ${
+            theme === 'dark'
+              ? 'bg-gray-800 border-gray-700'
+              : 'bg-gray-50 border-gray-200'
+          }`}>
+            <div className="flex items-center gap-3">
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                theme === 'dark' 
+                  ? 'bg-gray-700' 
+                  : 'bg-gray-200'
+              }`}>
+                <Bot size={16} className={theme === 'dark' ? 'text-gray-300' : 'text-gray-700'} />
+              </div>
+              <div>
+                <h3 className={`text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                  Assistente
+                </h3>
+              </div>
+            </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-gray-400 hover:text-white transition-colors duration-200 p-1 rounded-full hover:bg-gray-700/50"
+              className={`p-1 rounded transition-colors duration-200 ${
+                theme === 'dark'
+                  ? 'text-gray-400 hover:text-white hover:bg-gray-700'
+                  : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
+              }`}
               aria-label="Fechar Chatbot"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
           </div>
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar min-h-[200px]">
-            {messages.map((msg, index) => (
+
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-[300px] custom-scrollbar">
+            {messages.map((msg) => (
               <div
-                key={index}
+                key={msg.id}
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[80%] p-3 rounded-lg shadow-md ${
+                  className={`max-w-[85%] p-3 rounded-lg shadow-sm whitespace-pre-wrap text-sm ${
                     msg.role === 'user'
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-br-none'
-                      : 'bg-gray-800/80 backdrop-blur text-gray-100 rounded-bl-none border border-gray-700/50'
+                      ? theme === 'dark'
+                        ? 'bg-gray-700 text-white'
+                        : 'bg-gray-900 text-white'
+                      : theme === 'dark'
+                        ? 'bg-gray-800 text-gray-100 border border-gray-700'
+                        : 'bg-gray-100 text-gray-900 border border-gray-200'
                   }`}
                 >
                   {msg.text}
                 </div>
               </div>
             ))}
-            {isLoading && (
+            
+            {(isLoading || isTyping) && (
               <div className="flex justify-start">
-                <div className="max-w-[80%] p-3 rounded-lg shadow-md bg-gray-800/80 backdrop-blur text-gray-100 rounded-bl-none border border-gray-700/50">
-                  <Loader2 size={20} className="animate-spin text-blue-400" />
+                <div className={`max-w-[85%] p-3 rounded-lg shadow-sm ${
+                  theme === 'dark'
+                    ? 'bg-gray-800 border border-gray-700'
+                    : 'bg-gray-100 border border-gray-200'
+                }`}>
+                  <div className="flex items-center gap-2">
+                    <Loader2 size={14} className={`animate-spin ${
+                      theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }`} />
+                    <span className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+                      Digitando...
+                    </span>
+                  </div>
                 </div>
               </div>
             )}
-            <div ref={messagesEndRef} /> {/* Para scroll automático */}
+            <div ref={messagesEndRef} />
           </div>
-          <div className="p-4 border-t border-gray-700/50 flex items-center bg-gray-800/30 backdrop-blur">
+
+          {/* Suggestions */}
+          {showSuggestions && messages.length <= 2 && (
+            <div className={`p-3 border-t ${
+              theme === 'dark' 
+                ? 'border-gray-800 bg-gray-900' 
+                : 'border-gray-200 bg-gray-50'
+            }`}>
+              <p className={`text-xs mb-2 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-500'}`}>
+                Sugestões:
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                {suggestedQuestions.map((question, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSendMessage(question.text)}
+                    className={`text-left text-xs px-2.5 py-1.5 rounded transition-colors ${
+                      theme === 'dark'
+                        ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                        : 'bg-white hover:bg-gray-100 text-gray-700 border border-gray-200'
+                    }`}
+                    disabled={isLoading}
+                  >
+                    {question.text}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Input */}
+          <div className={`p-3 border-t flex items-center gap-2 ${
+            theme === 'dark' 
+              ? 'border-gray-800 bg-gray-900' 
+              : 'border-gray-200 bg-gray-50'
+          }`}>
             <input
+              ref={inputRef}
               type="text"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
@@ -190,46 +313,63 @@ export default function Chatbot() {
                 }
               }}
               placeholder="Digite sua mensagem..."
-              className="flex-1 bg-gray-800/50 border border-gray-600/50 rounded-full py-2 px-4 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 backdrop-blur"
+              className={`flex-1 rounded-lg py-2 px-3 text-sm focus:outline-none focus:ring-1 transition-all ${
+                theme === 'dark'
+                  ? 'bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:ring-gray-600'
+                  : 'bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:ring-gray-400'
+              }`}
               disabled={isLoading}
             />
             <button
               onClick={() => handleSendMessage()}
-              className="ml-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50"
+              className={`p-2 rounded-lg transition-all duration-200 disabled:opacity-50 ${
+                theme === 'dark'
+                  ? 'bg-gray-700 hover:bg-gray-600'
+                  : 'bg-gray-900 hover:bg-gray-800'
+              } text-white`}
               aria-label="Enviar Mensagem"
-              disabled={isLoading}
+              disabled={isLoading || !inputMessage.trim()}
             >
-              <Send size={20} />
+              <Send size={16} />
             </button>
           </div>
-          
-          {showSuggestions && messages.length <= 2 && (
-            <div className="p-3 border-t border-gray-700/50 bg-gray-800/20 backdrop-blur">
-              <p className="text-xs text-gray-400 mb-2">Sugestões:</p>
-              <div className="grid grid-cols-1 gap-2">
-                {suggestedQuestions.map((question, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleSendMessage(question)}
-                    className="text-left text-xs bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 hover:text-white px-2 py-1 rounded transition-all duration-300"
-                    disabled={isLoading}
-                  >
-                    {question}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-          <div className="p-3 border-t border-gray-700/50 bg-gray-800/30 backdrop-blur rounded-b-xl">
+
+          {/* WhatsApp Button */}
+          <div className={`p-3 border-t rounded-b-lg ${
+            theme === 'dark' 
+              ? 'border-gray-800 bg-gray-900' 
+              : 'border-gray-200 bg-gray-50'
+          }`}>
             <button
               onClick={handleWhatsAppClick}
-              className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-green-500/25"
+              className={`w-full font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center ${
+                theme === 'dark'
+                  ? 'bg-green-700 hover:bg-green-600'
+                  : 'bg-green-600 hover:bg-green-700'
+              } text-white text-sm`}
             >
-              <PhoneCall size={18} className="mr-2" /> Falar no WhatsApp
+              <PhoneCall size={16} className="mr-2" />
+              WhatsApp
             </button>
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: ${theme === 'dark' ? '#4b5563' : '#d1d5db'};
+          border-radius: 2px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: ${theme === 'dark' ? '#6b7280' : '#9ca3af'};
+        }
+      `}</style>
     </>
   );
 }
