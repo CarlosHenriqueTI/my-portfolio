@@ -105,16 +105,26 @@ export default function Chatbot() {
     const textToSend = messageText || inputMessage.trim();
     if (textToSend === '') return;
 
-    const userMessage: ChatMessage = { role: 'user', text: textToSend };
+    const userMessage: ChatMessage = { 
+      id: Date.now().toString(), 
+      role: 'user', 
+      text: textToSend,
+      timestamp: new Date()
+    };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setInputMessage('');
     setIsLoading(true);
     setShowSuggestions(false);
 
-    const predefinedResponse = getPredefineResponse(userMessage.text);
+    const predefinedResponse = getIntelligentResponse(userMessage.text, messages);
     if (predefinedResponse) {
       setTimeout(() => {
-        setMessages((prevMessages) => [...prevMessages, { role: 'model', text: predefinedResponse }]);
+        setMessages((prevMessages) => [...prevMessages, { 
+          id: Date.now().toString(), 
+          role: 'model', 
+          text: predefinedResponse,
+          timestamp: new Date()
+        }]);
         setIsLoading(false);
       }, 1000);
       return;
@@ -142,7 +152,12 @@ export default function Chatbot() {
           result.candidates[0].content && result.candidates[0].content.parts &&
           result.candidates[0].content.parts.length > 0) {
         const modelResponseText = result.candidates[0].content.parts[0].text;
-        setMessages((prevMessages) => [...prevMessages, { role: 'model', text: modelResponseText }]);
+        setMessages((prevMessages) => [...prevMessages, { 
+          id: Date.now().toString(), 
+          role: 'model', 
+          text: modelResponseText,
+          timestamp: new Date()
+        }]);
       } else {
         throw new Error('API response format error');
       }
@@ -150,8 +165,10 @@ export default function Chatbot() {
       
       setTimeout(() => {
         setMessages((prevMessages) => [...prevMessages, { 
+          id: Date.now().toString(),
           role: 'model', 
-          text: 'Desculpe, não tenho uma resposta específica para sua pergunta no momento. Mas posso ajudá-lo com informações sobre as habilidades, projetos, experiência ou formas de contato de Carlos Henrique. Ou clique no botão do WhatsApp para falar diretamente!' 
+          text: 'Desculpe, não tenho uma resposta específica para sua pergunta no momento. Mas posso ajudá-lo com informações sobre as habilidades, projetos, experiência ou formas de contato de Carlos Henrique. Ou clique no botão do WhatsApp para falar diretamente!',
+          timestamp: new Date()
         }]);
         setIsLoading(false);
       }, 1500);
@@ -159,8 +176,10 @@ export default function Chatbot() {
     } catch (error) {
       console.error('Erro ao processar mensagem:', error);
       setMessages((prevMessages) => [...prevMessages, { 
+        id: Date.now().toString(),
         role: 'model', 
-        text: 'Desculpe, ocorreu um erro. Mas posso ajudá-lo com informações sobre Carlos Henrique! Tente perguntar sobre suas habilidades, projetos ou experiência. Ou use o botão do WhatsApp para contato direto.' 
+        text: 'Desculpe, ocorreu um erro. Mas posso ajudá-lo com informações sobre Carlos Henrique! Tente perguntar sobre suas habilidades, projetos ou experiência. Ou use o botão do WhatsApp para contato direto.',
+        timestamp: new Date()
       }]);
       setIsLoading(false);
     }
@@ -251,11 +270,11 @@ export default function Chatbot() {
                 {suggestedQuestions.map((question, index) => (
                   <button
                     key={index}
-                    onClick={() => handleSendMessage(question)}
+                    onClick={() => handleSendMessage(question.text)}
                     className="text-left text-xs bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 hover:text-white px-2 py-1 rounded transition-all duration-300"
                     disabled={isLoading}
                   >
-                    {question}
+                    {question.text}
                   </button>
                 ))}
               </div>
